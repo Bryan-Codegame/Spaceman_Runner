@@ -40,16 +40,16 @@ TextureImporter:
     second: jump_2
   - first:
       213: 9170327630243124144
-    second: takingOff
+    second: jump_3
   - first:
       213: 1404248521807868572
-    second: inAir_1
+    second: jump_4
   - first:
       213: 5680673976619871293
-    second: inAir_2
+    second: jump_5
   - first:
       213: -7969225410775572928
-    second: landing
+    second: jump_6
   - first:
       213: -1613414928997637167
     second: foeAnim_1
@@ -481,7 +481,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: takingOff
+      name: jump_3
       rect:
         serializedVersion: 2
         x: 605
@@ -502,7 +502,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: inAir_1
+      name: jump_4
       rect:
         serializedVersion: 2
         x: 818
@@ -523,7 +523,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: inAir_2
+      name: jump_5
       rect:
         serializedVersion: 2
         x: 1050
@@ -544,7 +544,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: landing
+      name: jump_6
       rect:
         serializedVersion: 2
         x: 1246
@@ -779,7 +779,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 92
-        y: 1463
+        y: 1467
         width: 117
         height: 118
       alignment: 0
