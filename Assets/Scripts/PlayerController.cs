@@ -23,18 +23,18 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space) || Input.GetMouseButton(0))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(0))
         {
-            
-            if(!isInTheGround()) {
-                jump();
-            }
-           
+            jump();  
         }
     }
 
     void jump() {
-        m_Rigidbody.AddForce(Vector2.up*jumpForce, ForceMode2D.Impulse);
+
+        if(isInTheGround()) {
+            m_Rigidbody.AddForce(Vector2.up*jumpForce, ForceMode2D.Impulse);
+        }
+        
     }
 
     //Raycast devuelve un booleano
