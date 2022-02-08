@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField]
+    private float distanceRay = 1f;
+    
     public float jumpForce = 0.6f;
 
     Rigidbody2D m_Rigidbody;
@@ -11,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundMask; 
 
     bool isInAir;
+
     private void Awake() {
         m_Rigidbody = GetComponent<Rigidbody2D>();
     }
@@ -23,14 +27,20 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(0))
+        if (Input.GetKey(KeyCode.Space) || Input.GetMouseButton(0))
         {
-            jump();  
+            Debug.Log("Press Space");
+            Jump();  
         }
+
+        
+        //Debug RayCast
+        Debug.DrawRay(this.transform.position, Vector2.down * distanceRay, Color.green);
     }
 
-    void jump() {
+    void Jump() {
 
+        //Si está en el piso va a saltar 
         if(isInTheGround()) {
             m_Rigidbody.AddForce(Vector2.up*jumpForce, ForceMode2D.Impulse);
         }
@@ -39,7 +49,7 @@ public class PlayerController : MonoBehaviour
 
     //Raycast devuelve un booleano
     bool isInTheGround() {
-        float distanceRay = 1f;
+      
         if (Physics2D.Raycast(this.transform.position, Vector2.down, distanceRay, groundMask)) {
             return true;
         } else {
