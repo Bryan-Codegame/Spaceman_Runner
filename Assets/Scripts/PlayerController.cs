@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour
     
     public float jumpForce = 0.6f;
 
+    //Speed
+    public float speedPlayer = 2.0f;
+
     Rigidbody2D m_Rigidbody;
     Animator m_Animator;
 
@@ -37,17 +40,25 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(0))
+        if (Input.GetKey(KeyCode.Space) || Input.GetMouseButton(0))
         {            
             Jump();  
         }
 
         m_Animator.SetBool(ON_THE_GROUND, isOnTheGround()); 
+        
         //Debug RayCast
         Debug.DrawRay(this.transform.position, Vector2.down * distanceRay, Color.green);
-        Debug.Log(m_Rigidbody.velocity.y);
     }
 
+    //Se usa cuando el movimiento es por físicas 
+    void FixedUpdate() 
+    {
+        // Hacer que corra todo el tiempo
+        if (m_Rigidbody.velocity.x < speedPlayer) {
+            m_Rigidbody.velocity = new Vector2(speedPlayer, m_Rigidbody.velocity.y);
+        }    
+    }
     void Jump() {
 
         //Si está en el piso va a saltar 
