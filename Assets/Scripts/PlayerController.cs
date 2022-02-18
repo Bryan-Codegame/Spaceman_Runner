@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour
     //Se usa cuando el movimiento es por físicas 
     void FixedUpdate() 
     {
+        // Hacer que corra todo el tiempo
         if (m_Rigidbody.velocity.x < speedPlayer) {
             m_Rigidbody.velocity = new Vector2(speedPlayer, m_Rigidbody.velocity.y);
         }    
