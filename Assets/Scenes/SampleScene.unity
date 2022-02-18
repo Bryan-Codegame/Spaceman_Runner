@@ -260,7 +260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f25f4b1baff24d949aaf14de06b9b0e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceRay: 1.5
+  distanceRay: 1.8
   jumpForce: 1
   groundMask:
     serializedVersion: 2
