@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Se activa presionando space o enter ambos están asociados a este submit en el input manager.
         if (Input.GetButtonDown("Submit"))
         {
             StartGame();

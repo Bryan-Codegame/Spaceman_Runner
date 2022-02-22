@@ -40,13 +40,16 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Input.GetButtonDown("Jump")
-        if (Input.GetKey(KeyCode.Space) || Input.GetMouseButton(0))
-        {            
-            Jump();  
-        }
+        if (GameManager.sharedInstance.currentGameState == GameState.inGame) {
+            //Input.GetButtonDown("Jump")
+            if (Input.GetKey(KeyCode.Space) || Input.GetMouseButton(0))
+            {            
+                Jump();  
+            }
 
-        m_Animator.SetBool(ON_THE_GROUND, isOnTheGround()); 
+            m_Animator.SetBool(ON_THE_GROUND, isOnTheGround());
+        }
+         
         
         //Debug RayCast
         Debug.DrawRay(this.transform.position, Vector2.down * distanceRay, Color.green);
@@ -56,9 +59,14 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate() 
     {
         // Hacer que corra todo el tiempo
-        if (m_Rigidbody.velocity.x < speedPlayer) {
-            m_Rigidbody.velocity = new Vector2(speedPlayer, m_Rigidbody.velocity.y);
-        }    
+        if (GameManager.sharedInstance.currentGameState == GameState.inGame) {
+            if (m_Rigidbody.velocity.x < speedPlayer) {
+                m_Rigidbody.velocity = new Vector2(speedPlayer, m_Rigidbody.velocity.y);
+            }
+        } else {
+            m_Rigidbody.velocity = new Vector2(0, m_Rigidbody.velocity.y);
+        }
+
     }
     void Jump() {
 
