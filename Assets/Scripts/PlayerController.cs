@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Input.GetButtonDown("Jump")
         if (Input.GetKey(KeyCode.Space) || Input.GetMouseButton(0))
         {            
             Jump();  
