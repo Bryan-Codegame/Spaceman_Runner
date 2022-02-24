@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    Vector3 startPos;
 
     //Animation const string
     const string ON_THE_GROUND = "isOnTheGround";
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour
     //Speed
     public float speedPlayer = 2.0f;
 
+    //Components
     Rigidbody2D m_Rigidbody;
     Animator m_Animator;
 
@@ -33,8 +35,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_Animator.SetBool(ON_THE_GROUND, true);
-        m_Animator.SetBool(IS_ALIVE, true);
+        startPos = this.transform.position;
     }
 
     // Update is called once per frame
@@ -68,6 +69,26 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+
+    /* ----------------------- */
+    /* Functions */
+
+    //StartGame - Restart the game with initial params.
+    public void StartGame() {
+        m_Animator.SetBool(ON_THE_GROUND, true);
+        m_Animator.SetBool(IS_ALIVE, true);
+
+        /* Resuelve el problema de que al reiniciar el primer frame muestra al player 
+        en su animación de muerte cuando desde un inicio debe aparecer vivo por eso se tarda 0.2 seg y ya resetea la posición*/ 
+        Invoke("ResetPosition", 0.2f);
+    }
+
+    void ResetPosition() {
+        this.transform.position = startPos;
+        this.m_Rigidbody.velocity = Vector2.zero;
+    }
+
+    //Jump
     void Jump() {
 
         //Si está en el piso va a saltar 

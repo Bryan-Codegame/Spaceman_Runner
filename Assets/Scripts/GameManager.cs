@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     //Inicial State of the game
     public GameState currentGameState = GameState.menu;
 
+    PlayerController controller;
+
     void Awake() 
     {
         if (sharedInstance == null)
@@ -31,19 +33,21 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        controller = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
     void Update()
     {
         //Se activa presionando space o enter ambos están asociados a este submit en el input manager.
-        if (Input.GetButtonDown("Submit"))
+        if (Input.GetButtonDown("Submit") && currentGameState != GameState.inGame)
         {
             StartGame();
         }
     }
 
+    /* ---------------------------- */
+    /* Functions */
     public void StartGame() 
     {
         SetGameState(GameState.inGame);
@@ -59,12 +63,13 @@ public class GameManager : MonoBehaviour
         SetGameState(GameState.menu);
     }
 
+
     private void SetGameState(GameState state)
     {
         if (state == GameState.menu){
             //TODO: Menu
         } else if (state == GameState.inGame) {
-            //TODO: inGame
+            controller.StartGame();
         } else if (state == GameState.gameOver) {
             //TODO: gameOver
         }
